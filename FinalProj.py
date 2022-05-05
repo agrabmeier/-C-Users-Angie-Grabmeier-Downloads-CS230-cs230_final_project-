@@ -129,7 +129,7 @@ def charts(dataframe):
     reg_df2 = reg_df2.loc[reg_df2["Ride Fare" ]< 60]
     reg_df2 = reg_df2.loc[reg_df2["Ride Distance" ] < 20]
 
-    scat_plot = px.scatter(x=reg_df2["Ride Distance"],y=reg_df2["Ride Fare"],color_discrete_sequence =['green']*len(df),trendline="ols",trendline_color_override="white",range_y=[0,100], labels={
+    scat_plot = px.scatter(x=reg_df2["Ride Distance"],y=reg_df2["Ride Fare"],color_discrete_sequence =['green']*len(df),title = "Fare vs Distance", trendline="ols",trendline_color_override="white",range_y=[0,100], labels={
         "x":"Ride Distance (Miles)","y":"Ride Fare ($)", })
 
     time_freq = df.value_counts(subset="Time")
@@ -137,6 +137,8 @@ def charts(dataframe):
     fig = px.bar(time_freq,color_discrete_sequence =['green']*len(df),title="Ride Frequency By Time of Day")
     st.write(fig)
     st.write(scat_plot)
+    
+    st.write("Regression Equation: y = 3.66x + 3.58")
 
 def sort_chart(dataframe):
     st.subheader("Rides Sort")
